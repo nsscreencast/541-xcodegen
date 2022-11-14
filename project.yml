@@ -1,0 +1,40 @@
+name: Wurdle
+options:
+  bundleIdPrefix: com.nsscreencast.wurdle
+
+packages:
+  Yams:
+    url: https://github.com/jpsim/Yams
+    from: 2.0.0
+
+targets:
+  Wurdle:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources: [Sources/Wurdle]
+    # settings:
+    #   INFOPLIST_FILE: Sources/Wurdle/Info.plist
+    info:
+      path: Sources/Wurdle/Info.plist
+      properties:
+        CFBundleDisplayName: WURDLE!
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        UILaunchStoryboardName: LaunchScreen
+
+    settings:
+      # don't change this, or CI will complain
+      SUPERIMPORTANTSETTING: true
+
+    dependencies:
+      - target: WurdleKit
+  
+  WurdleKit:
+    type: framework
+    platform: iOS
+    sources: [Sources/WurdleKit]
+    dependencies:
+      - package: Yams
+    info:
+      path: Sources/WurdleKit/Info.plist
+      properties:
